@@ -38741,7 +38741,9 @@
 	    };
 
 	    _this.handleCalendarClickOutside = function (event) {
-	      _this.setOpen(false);
+	      if (!_this.props.inline) {
+	        _this.setOpen(false);
+	      }
 	      _this.props.onClickOutside(event);
 	      if (_this.props.withPortal) {
 	        event.preventDefault();
@@ -38983,6 +38985,13 @@
 	  }
 
 	  _createClass(DatePicker, [{
+	    key: 'componentWillReceiveProps',
+	    value: function componentWillReceiveProps(nextProps) {
+	      if (this.props.inline && !this.props.selected.isSame(nextProps.selected, 'month')) {
+	        this.setPreSelection(nextProps.selected);
+	      }
+	    }
+	  }, {
 	    key: 'componentWillUnmount',
 	    value: function componentWillUnmount() {
 	      this.clearPreventFocusTimeout();
@@ -56509,6 +56518,15 @@
 	  }
 
 	  _createClass(Month, [{
+	    key: 'shouldComponentUpdate',
+	    value: function shouldComponentUpdate(nextProps, nextState) {
+	      console.log(this.props, this.state);
+	      console.log('--> should component update');
+	      console.log(nextProps, nextState);
+
+	      return this.props !== nextProps || this.state !== nextState;
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
@@ -57572,11 +57590,7 @@
 	            top = _this$state$data$offs.top,
 	            left = _this$state$data$offs.left;
 
-	        if (!left) {
-	          return { top: +top };
-	        } else {
-	          return { left: +left };
-	        }
+	        return { top: top, left: left };
 	      }
 	    }, _temp), _possibleConstructorReturn(_this, _ret);
 	  }
@@ -57603,7 +57617,7 @@
 	        this._updatePopper();
 	      }
 
-	      if (lastProps.children !== this.props.children) {
+	      if (this._popper && lastProps.children !== this.props.children) {
 	        this._popper.scheduleUpdate();
 	      }
 	    }

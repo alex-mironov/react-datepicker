@@ -58,6 +58,14 @@ export default class Month extends React.Component {
     return startOfWeek.isSame(day, 'month') || endOfWeek.isSame(day, 'month')
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log(this.props, this.state)
+    console.log('--> should component update')
+    console.log(nextProps, nextState)
+
+    return this.props !== nextProps || this.state !== nextState
+  }
+
   renderWeeks = () => {
     const weeks = []
     var isFixedHeight = this.props.fixedHeight
