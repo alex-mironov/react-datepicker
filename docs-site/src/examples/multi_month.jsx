@@ -30,7 +30,7 @@ export default class MultiMonth extends React.Component {
       </pre>
       <div className="column">
         <DatePicker
-            monthsShown={2}
+            monthsShown={5}
             onChange={this.handleChange}
             selected={this.state.startDate} />
       </div>

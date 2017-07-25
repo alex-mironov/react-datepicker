@@ -5,7 +5,7 @@ import Week from './week'
 
 const FIXED_HEIGHT_STANDARD_WEEK_COUNT = 6
 
-export default class Month extends React.Component {
+export default class Month extends React.PureComponent {
   static propTypes = {
     day: PropTypes.object.isRequired,
     dayClassName: PropTypes.func,
@@ -58,13 +58,11 @@ export default class Month extends React.Component {
     return startOfWeek.isSame(day, 'month') || endOfWeek.isSame(day, 'month')
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log(this.props, this.state)
-    console.log('--> should component update')
-    console.log(nextProps, nextState)
-
-    return this.props !== nextProps || this.state !== nextState
-  }
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   console.log(this.props, this.state)
+  //   console.log('--> should component update')
+  //   console.log(nextProps, nextState)
+  // }
 
   renderWeeks = () => {
     const weeks = []

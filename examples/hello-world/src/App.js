@@ -4,6 +4,10 @@ import moment from 'moment';
 
 import 'react-datepicker/dist/react-datepicker.css';
 
+const minDate = moment()
+const maxDate = moment(minDate).add(4, 'years')
+const monthsShown = maxDate.diff(moment(), "months") + 2
+
 class App extends Component {
   constructor() {
     super();
@@ -15,11 +19,15 @@ class App extends Component {
   render() {
     return (
       <DatePicker
+        inline
         selected={this.state.startDate}
         onChange={this.handleChange.bind(this)}
+        monthsShown={monthsShown}
       />
     );
   }
+        // minDate={minDate}
+        // maxDate={maxDate}
 
   handleChange(date) {
     this.setState({

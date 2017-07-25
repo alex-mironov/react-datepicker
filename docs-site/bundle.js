@@ -56421,8 +56421,8 @@
 
 	var FIXED_HEIGHT_STANDARD_WEEK_COUNT = 6;
 
-	var Month = function (_React$Component) {
-	  _inherits(Month, _React$Component);
+	var Month = function (_React$PureComponent) {
+	  _inherits(Month, _React$PureComponent);
 
 	  function Month() {
 	    var _ref;
@@ -56517,16 +56517,13 @@
 	    }, _temp), _possibleConstructorReturn(_this, _ret);
 	  }
 
-	  _createClass(Month, [{
-	    key: 'shouldComponentUpdate',
-	    value: function shouldComponentUpdate(nextProps, nextState) {
-	      console.log(this.props, this.state);
-	      console.log('--> should component update');
-	      console.log(nextProps, nextState);
+	  // shouldComponentUpdate(nextProps, nextState) {
+	  //   console.log(this.props, this.state)
+	  //   console.log('--> should component update')
+	  //   console.log(nextProps, nextState)
+	  // }
 
-	      return this.props !== nextProps || this.state !== nextState;
-	    }
-	  }, {
+	  _createClass(Month, [{
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
@@ -56538,7 +56535,7 @@
 	  }]);
 
 	  return Month;
-	}(_react2.default.Component);
+	}(_react2.default.PureComponent);
 
 	Month.propTypes = {
 	  day: _propTypes2.default.object.isRequired,
@@ -63218,7 +63215,7 @@
 	          'div',
 	          { className: 'column' },
 	          _react2.default.createElement(_reactDatepicker2.default, {
-	            monthsShown: 2,
+	            monthsShown: 5,
 	            onChange: this.handleChange,
 	            selected: this.state.startDate })
 	        )
